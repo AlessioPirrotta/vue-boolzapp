@@ -1,0 +1,48 @@
+._centrato {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+._green{
+    background-color: #009687;
+}
+
+._grey{
+    background-color: #d7d7d2;
+}
+
+._fillGrey{
+    color: #7f7f7f;
+}
+
+#magn{
+    position: absolute;
+    top: 30%;
+    left: 4%;
+    z-index: 3;
+}
+
+#magn:hover{
+    cursor: pointer;
+}
+
+._backW{
+    background-image: url(./img/mine.jpg);
+}
+
+._wgreen{
+    background-color: #d2f5b9;
+}
+
+#miniHour{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+._footerC{
+    background-color: #f0ebe6;
+}
+
