@@ -32,12 +32,12 @@
                     <i id="magn" class="fa-solid fa-magnifying-glass"></i>
                     <input class="position-relative ps-5 border" style="width: 100%;" type="text" placeholder="Cerca o inizia una nuova chat" >
                 </div>
-                <div>
+                <div v-for="(item, index) in contacts" :key="index">
                     <div style="height: 60px;" class="border d-flex align-items-center">
-                        <img width="10%" class="rounded-circle ms-1 " src="./img/avatar_1.jpg" alt="">
+                        <img width="10%" class="rounded-circle ms-1 " :src="item.avatar"  alt="">
                         <div style="width: 100%;" class="d-flex justify-content-between">
                             <div class="d-flex flex-column">
-                                <span class="fw-semibold ms-2">Michele</span>
+                                <span class="fw-semibold ms-2">{{item.name}}</span>
                                 <span style="font-size: 12px;" class="fw-semibold ms-2 _fillGrey">Ultimo messaggio inviato</span>
                             </div>
                             <span style="font-size: 11px;" class="fw-semibold ms-2 _fillGrey me-2">12:00</span>
@@ -60,9 +60,9 @@
                     </div>
                 </div>
                 <div style="width: 100%;height: 86%;" class="_backW">
-                    <div class="py-4 px-5 d-flex flex-column">
-                        <div style="height: 40px; width: 20%;" class="bg-light d-flex align-items-center px-3 my-1 rounded-3 position-relative ">
-                            <span style="font-size: 13px;" class="fw-semibold">Ciao a tutti</span>
+                    <div v-for="contact in contacts" :key="contact.name" class="py-4 px-5 d-flex flex-column">
+                        <div v-for="(message, index) in contact.message" :key="index" style="height: 40px; width: 20%;" class="_wwhite d-flex align-items-center px-3 my-1 rounded-3 position-relative ">
+                            <span style="font-size: 13px;" class="fw-semibold">{{message.message}}</span>
                             <span id="miniHour" style="font-size: 10px;" class="fw-semibold ms-2 _fillGrey me-2">12:00</span>
                         </div>
                         <div id="ans" style="height: 40px; width: 20%;" class="_wgreen d-flex align-items-center px-3 my-1 rounded-3 align-self-end position-relative">
