@@ -172,7 +172,21 @@ const { createApp } = Vue
     },
 
     methods: {
-       
-      
+      changeC(index){
+        this.currentChat = index
+      },
+      sendM(){
+        const nuovoMessaggioSent= {message:`${this.messValue}`, date: "now", status:"sent"}
+        this.contacts[this.currentChat].messages.push(nuovoMessaggioSent)
+        this.messValue=""
+        
+      },
+      sendM2(){
+        setTimeout(() => {
+          const nuovoMessaggioReceived = { message: "ok", date: "now", status: "received" };
+          this.contacts[this.currentChat].messages.push(nuovoMessaggioReceived);
+          this.messValue = "";
+        }, 1000);
+      } 
     }
   }).mount('#app')

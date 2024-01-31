@@ -32,25 +32,28 @@
                     <i id="magn" class="fa-solid fa-magnifying-glass"></i>
                     <input class="position-relative ps-5 border" style="width: 100%;" type="text" placeholder="Cerca o inizia una nuova chat" >
                 </div>
-                <div v-for="(item, index) in contacts" :key="index">
-                    <div style="height: 60px;" class="border d-flex align-items-center">
-                        <img width="10%" class="rounded-circle ms-1 " :src="item.avatar"  alt="">
-                        <div style="width: 100%;" class="d-flex justify-content-between">
-                            <div class="d-flex flex-column">
-                                <span class="fw-semibold ms-2">{{item.name}}</span>
-                                <span style="font-size: 12px;" class="fw-semibold ms-2 _fillGrey">Ultimo messaggio inviato</span>
+                <div  class="overflow-y-scroll">
+                    <div @click="changeC(index)" v-for="(item, index) in contacts" :key="index" class="">
+                        <div style="height: 60px;" class="border d-flex align-items-center">
+                            <img width="10%" class="rounded-circle ms-1 " :src="item.avatar"  alt="">
+                            <div style="width: 100%;" class="d-flex justify-content-between">
+                                <div class="d-flex flex-column">
+                                    <span class="fw-semibold ms-2">{{item.name}}</span>
+                                    <span style="font-size: 12px;" class="fw-semibold ms-2 _fillGrey">Ultimo messaggio inviato</span>
+                                </div>
+                                <span style="font-size: 11px;" class="fw-semibold ms-2 _fillGrey me-2">12:00</span>
                             </div>
-                            <span style="font-size: 11px;" class="fw-semibold ms-2 _fillGrey me-2">12:00</span>
                         </div>
                     </div>
+
                 </div>
             </div>
-            <div style="height: 100%;width: 70%;" class="bg-warning overflow-hidden">
+            <div  style="height: 100%;width: 70%;" class="bg-warning overflow-hidden">
                 <div class="border-start">
                     <div style="height: 50%;" class="d-flex justify-content-between _grey">
                         <div style="width: 100%; height: 50px;" class=" d-flex align-items-center">
-                            <img width="3.5%" class="rounded-circle ms-1" src="./img/avatar_1.jpg" alt="">
-                            <span class="fw-semibold ms-2">Michele</span>
+                            <img width="3.5%" class="rounded-circle ms-1" :src="contacts[currentChat].avatar" alt="">
+                            <span class="fw-semibold ms-2">{{contacts[currentChat].name}}</span>
                         </div>
                         <div class="d-flex align-items-center pe-3 gap-3 _fillGrey">
                             <i  class="fa-solid fa-magnifying-glass"></i>
@@ -60,21 +63,20 @@
                     </div>
                 </div>
                 <div style="width: 100%;height: 86%;" class="_backW">
-                    <div v-for="contact in contacts" :key="contact.name" class="py-4 px-5 d-flex flex-column">
-                        <div v-for="(message, index) in contact.message" :key="index" style="height: 40px; width: 20%;" class="_wwhite d-flex align-items-center px-3 my-1 rounded-3 position-relative ">
-                            <span style="font-size: 13px;" class="fw-semibold">{{message.message}}</span>
-                            <span id="miniHour" style="font-size: 10px;" class="fw-semibold ms-2 _fillGrey me-2">12:00</span>
-                        </div>
-                        <div id="ans" style="height: 40px; width: 20%;" class="_wgreen d-flex align-items-center px-3 my-1 rounded-3 align-self-end position-relative">
-                            <span style="font-size: 13px;" class="fw-semibold">Ciao </span>
-                            <span  id="miniHour" style="font-size: 10px;" class="fw-semibold ms-2 _fillGrey me-2 ">12:00</span>
+                    <div>
+                        <div class="py-4 px-5 d-flex flex-column">
+                            <div v-for="(message, messageIndex) in contacts[currentChat].messages" :key="messageIndex" style="height:70px; width: 20%;" :class="message.status === 'received' ? '_wwhite d-flex align-items-center px-3 my-1 rounded-3 position-relative' : '_wgreen d-flex align-items-center px-3 my-1 rounded-3 align-self-end position-relative'" >
+                                <span style="font-size: 13px;" class="fw-semibold">{{ message.message }}</span>
+                                <span style="font-size: 10px;" class="fw-semibold ms-2 _fillGrey me-2 _miniHour">{{message.date}}</span>
+                            </div>
+                            
                         </div>
                     </div>
 
                 </div>
                 <div style="height: 8.5%; width: 100%;" class="_footerC d-flex align-items-center justify-content-between px-5">
                     <i style="scale: 1.5;" class="fa-regular fa-face-smile _fillGrey"></i>
-                    <input style="width: 85%; height: 50px;" class="border _fillGrey rounded-2" type="text" placeholder="Scrivi un messaggio">
+                    <input @keyup.enter="sendM(), sendM2()" v-model="messValue" style="width: 85%; height: 50px;" class="border _fillGrey rounded-2" type="text" placeholder="Scrivi un messaggio">
                     <i style="scale: 1.5;" class="fa-solid fa-microphone"></i>
                 </div>
 
