@@ -50,3 +50,14 @@
     background-color: #f0ebe6;
 }
 
+.popup {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+  }
+

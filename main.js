@@ -3,6 +3,8 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
+        isPopupVisible: false,
+        selectedMessage: 0,
         currentChat:0,
         empty: true,
         answer: ["Non sono in vena di parlare", "Ci sentiamo dopo", "Sono occupato al momento", "Non rompere"],
@@ -194,9 +196,6 @@ const { createApp } = Vue
             this.empty= true
             this.messValue= ""
           }
-          
-          
-        
       },
       sendM2(){
         setTimeout(() => {
@@ -216,7 +215,8 @@ const { createApp } = Vue
             item.visible= false
           }
         });
-        
-      }  
-    }
+      },
+      cancel(messageIndex) {
+        this.contacts[this.currentChat].messages.splice(messageIndex, 1);
+    }}
   }).mount('#app')
