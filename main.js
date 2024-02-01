@@ -4,6 +4,8 @@ const { createApp } = Vue
     data() {
       return {
         currentChat:0,
+        empty: true,
+        answer: ["Non sono in vena di parlare", "Ci sentiamo dopo", "Sono occupato al momento", "Non rompere"],
         contacts: [
             {
             name: 'Michele',
@@ -176,17 +178,45 @@ const { createApp } = Vue
         this.currentChat = index
       },
       sendM(){
-        const nuovoMessaggioSent= {message:`${this.messValue}`, date: "now", status:"sent"}
-        this.contacts[this.currentChat].messages.push(nuovoMessaggioSent)
-        this.messValue=""
+        const now = new Date();
+        const formattedDate = now.toLocaleString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false 
+        });
+        const nuovoMessaggioSent= {message:`${this.messValue}`, date: `${formattedDate}`, status:"sent"}
+        if (this.messValue.trim() !== "") {
+            this.contacts[this.currentChat].messages.push(nuovoMessaggioSent)
+            this.empty= true
+            this.messValue= ""
+          }
+          
+          
         
       },
       sendM2(){
         setTimeout(() => {
-          const nuovoMessaggioReceived = { message: "ok", date: "now", status: "received" };
-          this.contacts[this.currentChat].messages.push(nuovoMessaggioReceived);
-          this.messValue = "";
+          const randomIndex = Math.floor(Math.random() * this.answer.length);
+          const nuovoMessaggioReceived = { message: `${this.answer[randomIndex]}`, date: "now", status: "received" };
+          if (this.empty === true) {
+          this.contacts[this.currentChat].messages.push(nuovoMessaggioReceived);}
+          this.empty= false
         }, 1000);
-      } 
+      },
+      searchValue(){
+        this.contacts.forEach((item) => {
+          if(item.name.toLowerCase().includes( this.searchText.toLowerCase())){
+            item.visible= true
+          }
+          else{
+            item.visible= false
+          }
+        });
+        
+      }  
     }
   }).mount('#app')
