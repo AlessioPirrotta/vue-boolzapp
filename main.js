@@ -3,11 +3,14 @@ const { createApp } = Vue
   createApp({
     data() {
       return {
-        isPopupVisible: false,
-        selectedMessage: 0,
+        show: false,
         currentChat:0,
         empty: true,
         answer: ["Non sono in vena di parlare", "Ci sentiamo dopo", "Sono occupato al momento", "Non rompere"],
+        emojiArray: [
+          "😊", "🌟", "🎉", "👍", "😄", "😍", "🥳", "🎊", "👏",
+          "🌈", "🌸", "🚀", "🎈", "🍕", "❤️", "😂", 
+        ],
         contacts: [
             {
             name: 'Michele',
@@ -181,6 +184,7 @@ const { createApp } = Vue
       },
       sendM(){
         const now = new Date();
+        this.show= false
         const formattedDate = now.toLocaleString('en-US', {
             year: 'numeric',
             month: '2-digit',
@@ -220,5 +224,20 @@ const { createApp } = Vue
       cancel(messageIndex) {
         this.contacts[this.currentChat].messages.splice(messageIndex, 1);
 
-    }}
+    },
+    showEmo() {
+      this.show= !this.show
+
+  },
+  fal() {
+    this.show = false
+
+},
+  addEmo(index) {
+    if (!this.messValue) {
+      this.messValue = "";
+    }
+    this.messValue += this.emojiArray[index];
+    this.$forceUpdate()
+  }}
   }).mount('#app')

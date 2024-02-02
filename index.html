@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="width: 100%;height: 86%;" class="_backW overflow-y-scroll">
+                <div @click="fal" style="width: 100%;height: 86%;" class="_backW overflow-y-scroll">
                     <div>
                         <div class="py-4 px-5 d-flex flex-column">
                             <div class="dropdown py-2 overflow-auto: text-break" v-for="(message, messageIndex) in contacts[currentChat].messages" :key="messageIndex" style=" width: 250px;" :class="message.status === 'received' ? '_wwhite d-flex align-items-center px-3 my-1 rounded-3 position-relative' : '_wgreen d-flex align-items-center px-3 my-1 rounded-3 align-self-end position-relative'">
@@ -81,7 +81,10 @@
 
                 </div>
                 <div style="height: 8.5%; width: 100%;" class="_footerC d-flex align-items-center justify-content-between px-5">
-                    <i style="scale: 1.5;" class="fa-regular fa-face-smile _fillGrey"></i>
+                    <i @click="showEmo" style="scale: 1.5;" class="fa-regular fa-face-smile _fillGrey"></i>
+                    <div style="height: 100px;margin-bottom: 100px; width: 100px;" class="bg-light rounded-2 d-flex flex-wrap" v-if="show=== true" >
+                        <div @click="addEmo(index)" v-for="(emoji, index) in emojiArray" :key="index" class="_hover2">{{emoji}}</div>
+                    </div>
                     <input @keyup.enter="sendM(), sendM2()" v-model="messValue" style="width: 85%; height: 50px;" class="border _fillGrey rounded-2 ps-3" type="text" placeholder="Scrivi un messaggio">
                     <i style="scale: 1.5;" class="fa-solid fa-microphone"></i>
                 </div>

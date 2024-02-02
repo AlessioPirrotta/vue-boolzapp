@@ -54,6 +54,9 @@
  cursor: pointer;
  background-color: lightgray;
 }
+._hover2:hover{
+    cursor: pointer;
+   }
 
 ._wordWrap{
     word-wrap: break-word;
