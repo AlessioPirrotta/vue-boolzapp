@@ -195,6 +195,7 @@ const { createApp } = Vue
             this.contacts[this.currentChat].messages.push(nuovoMessaggioSent)
             this.empty= true
             this.messValue= ""
+          
           }
       },
       sendM2(){
