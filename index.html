@@ -40,9 +40,9 @@
                             <div style="width: 100%;" class="d-flex justify-content-between">
                                 <div class="d-flex flex-column">
                                     <span class="fw-semibold ms-2">{{item.name}}</span>
-                                    <span style="font-size: 12px;" class="fw-semibold ms-2 _fillGrey">{{item.messages[item.messages.length-1].message}}</span>
+                                    <span v-if="item.messages.length > 0" style="font-size: 12px;" class="fw-semibold ms-2 _fillGrey">{{item.messages[item.messages.length-1].message}}</span>
                                 </div>
-                                <span style="font-size: 11px;" class="fw-semibold ms-2 _fillGrey me-2">{{item.messages[item.messages.length-1].date}}</span>
+                                <span v-if="item.messages.length > 0" style="font-size: 11px;" class="fw-semibold ms-2 _fillGrey me-2">{{item.messages[item.messages.length-1].date}}</span>
                             </div>
                         </div>
                     </div>

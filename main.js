@@ -218,5 +218,6 @@ const { createApp } = Vue
       },
       cancel(messageIndex) {
         this.contacts[this.currentChat].messages.splice(messageIndex, 1);
+
     }}
   }).mount('#app')
